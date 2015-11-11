@@ -29,6 +29,32 @@ describe('book routes', function() {
       });
   });
 
+  it('should not add book without title', function(done) {
+    var addBook = {author: 'test'};
+    chai.request('localhost:3000')
+      .post('/api/books')
+      .send(addBook)
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.msg).to.eql('server error');
+        expect(res.body).to.not.have.property('_id');
+        done();
+      });
+  });
+
+  it('should not add book over 500 pages', function(done) {
+    var addBook = {title: 'test', pages: 555};
+    chai.request('localhost:3000')
+      .post('/api/books')
+      .send(addBook)
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.msg).to.eql('server error');
+        expect(res.body).to.not.have.property('_id');
+        done();
+      });
+  });
+
   it('should get existing books', function(done) {
     chai.request('localhost:3000')
       .get('/api/books')
