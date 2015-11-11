@@ -1,0 +1,28 @@
+{
+  "name": "emily_landi",
+  "version": "0.1.0",
+  "description": "Single Resource REST API",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emlandi/mongo_backed_rest_api.git"
+  },
+  "author": "emily.landi@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emlandi/mongo_backed_rest_api/issues"
+  },
+  "homepage": "https://github.com/emlandi/mongo_backed_rest_api#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.5"
+  }
+}
