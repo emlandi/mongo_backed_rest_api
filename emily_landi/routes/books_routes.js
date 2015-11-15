@@ -23,3 +23,19 @@ booksRouter.post('/books', bodyParser.json(), function(req, res) {
     res.json(data);
   });
 });
+
+booksRouter.put('/books/:id', bodyParser.json(), function(req, res) {
+  var bookData = req.body;
+  delete bookData._id;
+  Book.update({_id: req.params.id}, bookData, function(err) {
+    if (err) return handleError(err, res);
+    res.json({msg:'Put successful!'});
+  });
+});
+
+booksRouter.delete('/books/:id', function(req, res) {
+  Book.remove({_id: req.params.id}, function(err) {
+    if (err) return handleError(err, res);
+    res.json({msg:'Delete successful!'});
+  });
+});

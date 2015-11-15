@@ -64,4 +64,36 @@ describe('book routes', function() {
         done();
       });
   });
+
+  describe('put & delete routes', function() {
+    beforeEach(function(done) {
+      (new Book({title: 'test'})).save(function(err, data) {
+        expect(err).to.eql(null);
+        this.book = data;
+        done();
+      }.bind(this));
+    });
+
+    it('should edit existing book', function(done) {
+      chai.request('localhost:3000')
+        .put('/api/books/' + this.book._id)
+        .send({title: 'new test title'})
+        .end(function(err, res) {
+          expect(err).to.eql(null);
+          expect(res.body.msg).to.eql('Put successful!');
+          done();
+        });
+    });
+
+    it('should delete existing book', function(done) {
+      chai.request('localhost:3000')
+        .delete('/api/books/' + this.book._id)
+        .end(function(err, res) {
+          expect(err).to.eql(null);
+          expect(res.body.msg).to.eql('Delete successful!');
+          done();
+        });
+    });
+  });
 });
+
