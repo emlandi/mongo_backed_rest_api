@@ -94,6 +94,16 @@ describe('book routes', function() {
           done();
         });
     });
+
+    it('should get number of existing books', function(done) {
+      chai.request('localhost:3000')
+        .get('/api/books/' + this.book._id)
+        .end(function(err, res) {
+          expect(err).to.eql(null);
+          expect(res.body.msg).to.eql('The number of books is: 1');
+          done();
+        });
+    });
   });
 });
 

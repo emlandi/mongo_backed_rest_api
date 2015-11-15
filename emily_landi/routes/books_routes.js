@@ -39,3 +39,10 @@ booksRouter.delete('/books/:id', function(req, res) {
     res.json({msg:'Delete successful!'});
   });
 });
+
+booksRouter.get('/books/:id', function(req, res) {
+  Book.find({_id: req.params.id}).count(function(err, count) {
+    if (err) return handleError(err, res);
+    res.json({msg: 'The number of books is: ' + count});
+  });
+});
