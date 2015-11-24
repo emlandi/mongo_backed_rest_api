@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/emlandi/mongo_backed_rest_api#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
+    "eat": "^0.1.1",
     "express": "^4.13.3",
     "mongoose": "^4.2.5"
   },
