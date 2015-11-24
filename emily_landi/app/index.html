@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bookstore</title>
+</head>
+<body data-ng-app="bookstore">
+  <main data-ng-controller="BookController">
+    <h1>My Bookstore</h1>
+    <h2>{{book}}</h2>
+
+    <input type="text" data-ng-model="book">
+
+    <button data-ng-click="alertBook()">Reading is Fun!</button>
+  </main>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
