@@ -1,13 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Book = require(__dirname + '/../models/book');
+var handleError = require(__dirname + '/../lib/handleError');
 
 var booksRouter = module.exports = exports = express.Router();
-
-var handleError = function(err, res, next) {
-  console.log(err);
-  res.status(500).json({msg: 'server error'});
-};
 
 booksRouter.get('/books', function(req, res) {
   Book.find({}, function(err, data) {

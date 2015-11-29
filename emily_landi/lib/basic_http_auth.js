@@ -1,18 +1,16 @@
 module.exports = function(req, res, next) {
-  try {
-    var authString = req.headers.authorization;
-    var basicString = authString.split(' ')[1];
-    var basicBuffer = new Buffer(basicString, 'base64');
-    var authArray = basicBuffer.toString().split(':');
-    req.auth = {
-      username: authArray[0],
-      password: authArray[1]
-    };
-    debugger;
-    next();
-  } catch(e) {
-    console.log(e);
-    debugger;
-    return res.status(401).json({msg: 'Error'});
-  }
+  var pW = (req.headers.authorization || ':').split(' ')[1];
+  var pWBuffer = new Buffer(pW, 'base64');
+  var pWSplit = pWBuffer.toString('utf8').split(':');
+  req.auth = {
+    username: pWSplit[0],
+    password: pWSplit[1]
+  };
+
+  if (!(req.auth.username && req.auth.password)) {
+    console.log('No basic Auth provided.');
+    return res.status(401).json({msg: 'No basic Auth provided.'});
+  };
+
+  next();
 };

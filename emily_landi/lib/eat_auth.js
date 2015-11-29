@@ -2,10 +2,11 @@ var eat = require('eat');
 var User = require(__dirname + '/../models/auth');
 
 module.exports = exports = function(req, res, next) {
-  var token = req.headers.token || (req.body)? req.body.token : '';
+  var token = req.headers.token || ((req.body) ? req.body.token : undefined);
+
   if (!token) {
     console.log('No token.');
-    return res.status(401).json({msg: 'Access denied.'});
+    return res.status(401).json({msg: 'No token.'});
   }
 
   eat.decode(token, process.env.APP_SECRET, function(err, decoded) {
