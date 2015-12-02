@@ -27,7 +27,7 @@ module.exports = function(app) {
       book.editing = false;
       $http.put('/api/books/' + book._id, book)
         .then(function(res) {
-          console.log('The details of this book have been edited.')
+          console.log('Edit saved.');
         }, function(res) {
           console.log(err.data);
         });

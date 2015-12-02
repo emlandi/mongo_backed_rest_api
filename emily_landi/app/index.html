@@ -11,6 +11,9 @@
     <ul id="Books">
       <li data-ng-repeat="book in books">
         {{book.title}}
+
+        <button data-ng-if="!book.editing" data-ng-click="book.editing = true">Edit Book</button>
+
         <form name="bookForm{{book._id}}" data-ng-submit="edit(book)" data-ng-if="book.editing">
           <h3>Edit Details for {{book.title}}</h3>
 
@@ -29,8 +32,6 @@
           <button type="submit">Submit Changes</button>
           <button data-ng-click="book.editing = false">Cancel Changes</button>
         </form>
-
-        <button data-ng-if="!book.editing" data-ng-click="book.editing = true">Edit Book</button>
 
         <button data-ng-if="!book.editing" data-ng-click="remove(book)">Delete Book</button>
       </li>

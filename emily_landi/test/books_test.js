@@ -42,8 +42,8 @@ describe('book routes', function() {
       });
   });
 
-  it('should not add book over 500 pages', function(done) {
-    var addBook = {title: 'test', pages: 555};
+  it('should not add book over 1000 pages', function(done) {
+    var addBook = {title: 'test', pages: 1001};
     chai.request('localhost:3000')
       .post('/api/books')
       .send(addBook)
