@@ -2,20 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Bookstore</title>
+  <title>The Bookstore</title>
 </head>
 <body data-ng-app="BookstoreApp">
-  <h1>My Bookstore</h1>
+  <h1>The Bookstore</h1>
   <main data-ng-controller="BooksController" data-ng-init="getAll()">
 
     <ul id="Books">
-          <li data-ng-repeat="book in books">
-            {{book.title}}
-          </li>
-        </ul>
+      <li data-ng-repeat="book in books">
+        {{book.title}}
+        <form name="bookForm{{book._id}}" data-ng-submit="edit(book)" data-ng-if="book.editing">
+          <h3>Edit Details for {{book.title}}</h3>
+
+          <label for="bookTitle{{book._id}}">Title:</label>
+          <input type="text" id="bookTitle{{book._id}}" required data-ng-model="book.title">
+
+          <label for="bookAuthor{{book._id}}">Author: </label>
+          <input type="text" id="bookAuthor{{book._id}}" data-ng-model="book.author">
+
+          <label for="bookPages{{book._id}}">Pages:</label>
+          <input type="text" id="bookPages{{book._id}}" data-ng-model="book.pages">
+
+          <label for="bookRating{{book._id}}">Rating:</label>
+          <input type="text" id="bookRating{{book._id}}" data-ng-model="book.rating" placeholder="Excellent">
+
+          <button type="submit">Submit Changes</button>
+          <button data-ng-click="book.editing = false">Cancel Changes</button>
+        </form>
+
+        <button data-ng-if="!book.editing" data-ng-click="book.editing = true">Edit Book</button>
+
+        <button data-ng-if="!book.editing" data-ng-click="remove(book)">Delete Book</button>
+      </li>
+    </ul>
 
     <form name="newBookForm" data-ng-submit="create(newBook)">
-      <h3>New Book:</h3>
+      <h3>Add New Book:</h3>
       <label for="newBookTitle">Title:</label>
       <input type="text" id="newBookTitle" required data-ng-model="newBook.title">
 

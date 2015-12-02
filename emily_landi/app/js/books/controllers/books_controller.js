@@ -23,5 +23,26 @@ module.exports = function(app) {
       });
     };
 
+    $scope.edit = function(book) {
+      book.editing = false;
+      $http.put('/api/books/' + book._id, book)
+        .then(function(res) {
+          console.log('The details of this book have been edited.')
+        }, function(res) {
+          console.log(err.data);
+        });
+    };
+
+    $scope.remove = function(book) {
+      $scope.books.splice($scope.books.indexOf(book), 1);
+      $http.delete('api/books/' + book._id)
+        .then(function(res) {
+          console.log('This book has been deleted.');
+        }, function(res) {
+          console.log(err.data);
+          $scope.getAll();
+        });
+    };
+
   }]);
 };
