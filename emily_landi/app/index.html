@@ -4,16 +4,35 @@
   <meta charset="UTF-8">
   <title>My Bookstore</title>
 </head>
-<body data-ng-app="bookstore">
-  <main data-ng-controller="BookController">
-    <h1>My Bookstore</h1>
-    <h2>{{book}}</h2>
+<body data-ng-app="BookstoreApp">
+  <h1>My Bookstore</h1>
+  <main data-ng-controller="BooksController" data-ng-init="getAll()">
 
-    <input type="text" data-ng-model="book">
+    <ul id="Books">
+          <li data-ng-repeat="book in books">
+            {{book.title}}
+          </li>
+        </ul>
 
-    <button data-ng-click="alertBook()">Reading is Fun!</button>
+    <form name="newBookForm" data-ng-submit="create(newBook)">
+      <h3>New Book:</h3>
+      <label for="newBookTitle">Title:</label>
+      <input type="text" id="newBookTitle" required data-ng-model="newBook.title">
+
+      <label for="newBookAuthor">Author:</label>
+      <input type="text" id="newBookAuthor" data-ng-model="newBook.author">
+
+      <label for="newBookPages">Pages:</label>
+      <input type="text" id="newBookPages" data-ng-model="newBook.pages">
+
+      <label for="newBookRating">Rating:</label>
+      <input type="text" id="newBookRating" data-ng-model="newBook.rating" placeholder="Excellent">
+
+      <button type="submit" data-ng-disabled="newBookForm.$invalid">Add New Book</button>
+    </form>
+
   </main>
 
-  <script src="bundle.js"></script>
+  <script src="/bundle.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ var bookSchema = new mongoose.Schema({
     message: '{VALUE} is above the maximum number of pages.'
     }
   },
-  rating: {type: String, default: 'excellent'}
+  rating: {type: String, default: 'Excellent'}
 });
 
 module.exports = mongoose.model('Book', bookSchema);
