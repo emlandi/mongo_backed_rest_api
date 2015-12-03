@@ -10,13 +10,15 @@
 
     <ul id="Books">
       <li data-ng-repeat="book in books">
-        {{book.title}}
+        <span data-ng-hide="book.editing">
+          {{book.title}}
 
-        <button data-ng-if="!book.editing" data-ng-click="book.editing = true">Edit Book</button>
+          <button data-ng-click="edit(book)">Edit Book</button>
+          <button data-ng-click="delete(book)">Delete Book</button>
+        </span>
 
-        <form name="bookForm{{book._id}}" data-ng-submit="edit(book)" data-ng-if="book.editing">
+        <form data-ng-show="book.editing" name="{{'bookForm' + book._id}}" data-ng-submit="update(book)">
           <h3>Edit Details for {{book.title}}</h3>
-
           <label for="bookTitle{{book._id}}">Title:</label>
           <input type="text" id="bookTitle{{book._id}}" required data-ng-model="book.title">
 
@@ -30,10 +32,9 @@
           <input type="text" id="bookRating{{book._id}}" data-ng-model="book.rating" placeholder="Excellent">
 
           <button type="submit">Submit Changes</button>
-          <button data-ng-click="book.editing = false">Cancel Changes</button>
         </form>
 
-        <button data-ng-if="!book.editing" data-ng-click="remove(book)">Delete Book</button>
+        <button data-ng-show="book.editing" data-ng-click="cancelEdit(book)">Cancel Changes</button>
       </li>
     </ul>
 
