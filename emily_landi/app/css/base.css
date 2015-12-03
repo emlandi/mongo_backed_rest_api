@@ -1,0 +1,13 @@
+* {
+  font-family: 'Georgia', 'Arial';
+  font-size: 16px;
+  color: black;
+  background-color: lavender;
+  padding-left: 0.5em;
+}
+h1 {
+  text-align: center;
+}
+button {
+  background-color: white;
+}
