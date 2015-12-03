@@ -58,5 +58,15 @@ gulp.task('css:watch', function () {
   gulp.watch('./app/css/**/*.css', ['css:dev']);
 });
 
+gulp.task('webpack:test', function() {
+  return gulp.src('test/client/test_entry.js')
+  .pipe(webpack({
+    output: {
+      filename: 'test_bundle.js'
+    }
+  }))
+  .pipe(gulp.dest('test/client/'));
+});
+
 gulp.task('build:dev', ['webpack:dev', 'static:dev', 'css:dev']);
 gulp.task('default', ['build:dev', 'jshint', 'mocha']);
