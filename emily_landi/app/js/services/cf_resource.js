@@ -17,7 +17,6 @@ module.exports = function(app) {
       resource.getAll =  function(callback) {
         $http.get('/api/' + resourceName)
           .then(handleSuccess(callback), handleFail(callback));
-
       };
 
       resource.create = function(data, callback) {

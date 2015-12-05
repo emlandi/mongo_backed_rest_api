@@ -51,7 +51,7 @@ module.exports = function(app) {
 
     $scope.delete = function(book) {
       $scope.books.splice($scope.books.indexOf(book), 1);
-      $http.delete('api/books/' + book._id)
+      $http.delete('/api/books/' + book._id)
         .then(function(res) {
           console.log('This book has been deleted.');
         }, function(res) {
@@ -61,3 +61,4 @@ module.exports = function(app) {
     };
   }]);
 };
+
