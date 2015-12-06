@@ -7,9 +7,14 @@
 </head>
 <body data-ng-app="BookstoreApp">
   <h1>The Bookstore</h1>
-  <main data-ng-controller="BooksController" data-ng-init="getAll()">
+  <h2>Get Smart. Read.</h2>
 
-    <ul id="Books">
+  <p>Slider bootstrap javascript page dom page speed jQuery. App dom SQL FTP Django sql javascript angular page html dom python TCP page speed bootstrap tablet markdown ember css puppet css jQuery javascript c# yaml. Slider FTP python page puppet TCP. Wireshark page speed javascript tablet yaml dom. Swift yaml sql dom hosting bootstrap page html markdown tablet FTP ember angular dom Django javascript python SQL puppet javascript jQuery TCP c#.</p>
+
+  <main class="container" data-ng-controller="BooksController" data-ng-init="getAll()">
+
+    <ul class="seven columns">
+      <h3 id="books">Book List:</h3>
       <li data-ng-repeat="book in books">
         <span data-ng-hide="book.editing">
           {{book.title}}
@@ -39,7 +44,7 @@
       </li>
     </ul>
 
-    <form name="newBookForm" data-ng-submit="create(newBook)">
+    <form class="five columns" id="newBooks" name="newBookForm" data-ng-submit="create(newBook)">
       <h3>Add New Book:</h3>
       <label for="newBookTitle">Title:</label>
       <input type="text" id="newBookTitle" required data-ng-model="newBook.title">
@@ -55,8 +60,13 @@
 
       <button type="submit" data-ng-disabled="newBookForm.$invalid">Add New Book</button>
     </form>
-
   </main>
+
+  <img src="book.png" alt="Book">
+
+  <footer>
+    <p>Sketch Django html bootstrap javascript sql TCP. Material page hosting c# dom bootstrap page speed. Angular yaml bootstrap puppet angular page TCP ember markdown dom javascript page speed hosting c# sql jQuery python tablet SQL dom css javascript Django. Slider jQuery css bootstrap markdown TCP ember dom sql puppet SQL tablet javascript html javascript c# css hosting angular. Wireshark page speed puppet SQL python dom.</p>
+  </footer>
 
   <script src="/bundle.js"></script>
 </body>

@@ -34,6 +34,11 @@ gulp.task('css:watch', function () {
   gulp.watch('./app/css/**/*.css', ['css:dev']);
 });
 
+gulp.task('img:dev', function() {
+  gulp.src(['app/img/*.jpeg', 'app/img/*.jpg', 'app/img/*.png'])
+  .pipe(gulp.dest('build/'));
+});
+
 gulp.task('webpack:test', function() {
   return gulp.src('test/client/test_entry.js')
   .pipe(webpack({
@@ -44,6 +49,6 @@ gulp.task('webpack:test', function() {
   .pipe(gulp.dest('test/client/'));
 });
 
-gulp.task('build:dev', ['webpack:dev', 'static:dev', 'css:dev']);
+gulp.task('build:dev', ['webpack:dev', 'static:dev', 'css:dev', 'img:dev']);
 gulp.task('default', ['build:dev']);
 
