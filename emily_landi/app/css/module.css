@@ -1,20 +1,7 @@
 /*Modules are the reusable, modular parts of our design. They are the callouts, the sidebar sections, the product lists and so on.*/
 
-body {
-  font-family: 'Georgia', 'Arial';
-}
-h1 {
-  font-size: 4.5em;
-}
 input {
   background-color: white;
-}
-#books {
-  background-color: aqua;
-}
-#newBooks {
-  padding: 1em;
-  border: 0.5em solid aqua;
 }
 button {
   color: white;

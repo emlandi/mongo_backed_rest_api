@@ -1,5 +1,6 @@
 /*Base rules are the defaults.*/
 body {
+  font-family: 'Georgia', 'Arial';
   font-size: 1em;
   color: black;
   background-color: darkgrey;
@@ -11,10 +12,18 @@ h1 {
   height: 2.5em;
   background-color: black;
   color: white;
+  font-size: 4.5em;
 }
 h2, p {
   padding-left: 1em;
   padding-right: 1em;
+}
+#books {
+  background-color: aqua;
+}
+#newBooks {
+  padding: 1em;
+  border: 0.5em solid aqua;
 }
 img {
   height: 40%;
