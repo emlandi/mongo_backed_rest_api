@@ -6,7 +6,7 @@ var appFiles = ['server.js'];
 var testFiles = ['./test/**/*.js'];
 
 gulp.task('static:dev', function() {
-  gulp.src('app/index.html')
+  gulp.src('app/**/*.html')
   .pipe(gulp.dest('build/'));
 });
 
@@ -40,4 +40,5 @@ gulp.task('mocha', function() {
 });
 
 gulp.task('build:dev', ['webpack:dev', 'static:dev']);
-gulp.task('default', ['build:dev', 'jshint', 'mocha']);
+// gulp.task('default', ['build:dev', 'jshint', 'mocha']);
+gulp.task('default', ['build:dev']);

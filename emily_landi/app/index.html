@@ -2,18 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Bookstore</title>
+  <title>The Bookstore</title>
 </head>
-<body data-ng-app="bookstore">
-  <main data-ng-controller="BookController">
-    <h1>My Bookstore</h1>
-    <h2>{{book}}</h2>
+<body data-ng-app="BookstoreApp">
+  <h1>The Bookstore</h1>
+  <main data-ng-controller="BooksController" data-ng-init="getAll()">
 
-    <input type="text" data-ng-model="book">
+    <ul id="Books">
+      <li data-ng-repeat="book in books">
+        <span data-ng-hide="book.editing">
+          {{book.title}}
 
-    <button data-ng-click="alertBook()">Reading is Fun!</button>
+          <button data-ng-click="edit(book)">Edit Book</button>
+          <button data-ng-click="delete(book)">Delete Book</button>
+        </span>
+
+        <form data-ng-show="book.editing" name="{{'bookForm' + book._id}}" data-ng-submit="update(book)">
+          <h3>Edit Details for {{book.title}}</h3>
+          <label for="bookTitle{{book._id}}">Title:</label>
+          <input type="text" id="bookTitle{{book._id}}" required data-ng-model="book.title">
+
+          <label for="bookAuthor{{book._id}}">Author: </label>
+          <input type="text" id="bookAuthor{{book._id}}" data-ng-model="book.author">
+
+          <label for="bookPages{{book._id}}">Pages:</label>
+          <input type="text" id="bookPages{{book._id}}" data-ng-model="book.pages">
+
+          <label for="bookRating{{book._id}}">Rating:</label>
+          <input type="text" id="bookRating{{book._id}}" data-ng-model="book.rating" placeholder="Excellent">
+
+          <button type="submit">Submit Changes</button>
+        </form>
+
+        <button data-ng-show="book.editing" data-ng-click="cancelEdit(book)">Cancel Changes</button>
+      </li>
+    </ul>
+
+    <form name="newBookForm" data-ng-submit="create(newBook)">
+      <h3>Add New Book:</h3>
+      <label for="newBookTitle">Title:</label>
+      <input type="text" id="newBookTitle" required data-ng-model="newBook.title">
+
+      <label for="newBookAuthor">Author:</label>
+      <input type="text" id="newBookAuthor" data-ng-model="newBook.author">
+
+      <label for="newBookPages">Pages:</label>
+      <input type="text" id="newBookPages" data-ng-model="newBook.pages">
+
+      <label for="newBookRating">Rating:</label>
+      <input type="text" id="newBookRating" data-ng-model="newBook.rating" placeholder="Excellent">
+
+      <button type="submit" data-ng-disabled="newBookForm.$invalid">Add New Book</button>
+    </form>
+
   </main>
 
-  <script src="bundle.js"></script>
+  <script src="/bundle.js"></script>
 </body>
 </html>

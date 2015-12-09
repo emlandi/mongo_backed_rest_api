@@ -12,6 +12,13 @@ booksRouter.get('/books', function(req, res) {
   });
 });
 
+booksRouter.get('/books/:id', function(req, res) {
+  Book.find({_id: req.params.id}).count(function(err, count) {
+    if (err) return handleError(err, res);
+    res.json({msg: 'The number of books is: ' + count});
+  });
+});
+
 booksRouter.post('/books', bodyParser.json(), function(req, res) {
   var newBook = new Book(req.body);
   newBook.save(function(err, data) {
@@ -36,9 +43,4 @@ booksRouter.delete('/books/:id', function(req, res) {
   });
 });
 
-booksRouter.get('/books/:id', function(req, res) {
-  Book.find({_id: req.params.id}).count(function(err, count) {
-    if (err) return handleError(err, res);
-    res.json({msg: 'The number of books is: ' + count});
-  });
-});
+
