@@ -4,7 +4,7 @@ chai.use(chaihttp);
 var expect = chai.expect;
 var mongoose = require('mongoose');
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/book_stream_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/book_test';
 
 require(__dirname + '/../server');
 var Book = require(__dirname + '/../models/book');
@@ -36,7 +36,7 @@ describe('book routes', function() {
       .send(addBook)
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.msg).to.eql('server error');
+        expect(res.body.msg).to.eql('Server Error');
         expect(res.body).to.not.have.property('_id');
         done();
       });
@@ -49,7 +49,7 @@ describe('book routes', function() {
       .send(addBook)
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.msg).to.eql('server error');
+        expect(res.body.msg).to.eql('Server Error');
         expect(res.body).to.not.have.property('_id');
         done();
       });
