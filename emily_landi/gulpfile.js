@@ -48,6 +48,25 @@ gulp.task('webpack:test', function() {
   .pipe(gulp.dest('test/client/'));
 });
 
+gulp.task('jshint', function() {
+  return gulp.src(appFiles)
+    .pipe(jshint({
+      node: true,
+      globals: {
+        describe: true,
+        it: true,
+        before: true,
+        after: true,
+      }
+    }))
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('mocha', function() {
+  return gulp.src(testFiles, {read: false})
+    .pipe(mocha({reporter: 'landing'}));
+});
+
 gulp.task('build:dev', ['webpack:dev', 'static:dev', 'sass:dev', 'img:dev']);
 gulp.task('default', ['build:dev']);
 
