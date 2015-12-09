@@ -3,40 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>The Bookstore</title>
-  <link rel="stylesheet" type="text/css" href="styles.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body data-ng-app="BookstoreApp">
-  <h1>The Bookstore</h1>
-  <h2>Get Smart. Read.</h2>
-
-  <p>Slider bootstrap javascript page dom page speed jQuery. App dom SQL FTP Django sql javascript angular page html dom python TCP page speed bootstrap tablet markdown ember css puppet css jQuery javascript c# yaml. Slider FTP python page puppet TCP. Wireshark page speed javascript tablet yaml dom. Swift yaml sql dom hosting bootstrap page html markdown tablet FTP ember angular dom Django javascript python SQL puppet javascript jQuery TCP c#.</p>
+  <header>
+    <h1>The Bookstore</h1>
+  </header>
 
   <main class="container" data-ng-controller="BooksController" data-ng-init="getAll()">
 
-    <ul class="seven columns">
-      <h3 id="books">Book List:</h3>
-      <li data-ng-repeat="book in books">
-        <span data-ng-hide="book.editing">
-          {{book.title}}
+    <h2>Get Smart. Read.</h2>
 
+    <p>Slider bootstrap javascript page dom page speed jQuery. App dom SQL FTP Django sql javascript angular page html dom python TCP page speed bootstrap tablet markdown ember css puppet css jQuery javascript c# yaml. Slider FTP python page puppet TCP. Wireshark page speed javascript tablet yaml dom. Swift yaml sql dom hosting bootstrap page html markdown tablet FTP ember angular dom Django javascript python SQL puppet javascript jQuery TCP c#.</p>
+
+    <ul id="bookList" class="seven columns" >
+      <h3 id="listHead">Book List:</h3>
+      <li class="book" data-ng-repeat="book in books">
+        {{book.title}}
+        <span data-ng-hide="book.editing">
           <button data-ng-click="edit(book)">Edit Book</button>
           <button data-ng-click="delete(book)">Delete Book</button>
         </span>
 
-        <form data-ng-show="book.editing" name="{{'bookForm' + book._id}}" data-ng-submit="update(book)">
+        <form name="editBookForm" data-ng-show="book.editing" data-ng-submit="update(book)">
           <h3>Edit Details for {{book.title}}</h3>
-          <label for="bookTitle{{book._id}}">Title:</label>
-          <input type="text" id="bookTitle{{book._id}}" required data-ng-model="book.title">
+          <label for="bookTitle">Title:</label>
+          <input type="text" id="bookTitle" required data-ng-model="book.title">
 
-          <label for="bookAuthor{{book._id}}">Author: </label>
-          <input type="text" id="bookAuthor{{book._id}}" data-ng-model="book.author">
+          <label for="bookAuthor">Author: </label>
+          <input type="text" id="bookAuthor" data-ng-model="book.author">
 
-          <label for="bookPages{{book._id}}">Pages:</label>
-          <input type="text" id="bookPages{{book._id}}" data-ng-model="book.pages">
+          <label for="bookPages">Pages:</label>
+          <input type="text" id="bookPages" data-ng-model="book.pages">
 
-          <label for="bookRating{{book._id}}">Rating:</label>
-          <input type="text" id="bookRating{{book._id}}" data-ng-model="book.rating" placeholder="Excellent">
+          <label for="bookRating">Rating:</label>
+          <input type="text" id="bookRating" data-ng-model="book.rating" placeholder="Excellent">
 
+          <br>
           <button type="submit">Submit Changes</button>
         </form>
 
@@ -44,7 +47,7 @@
       </li>
     </ul>
 
-    <form class="five columns" id="newBooks" name="newBookForm" data-ng-submit="create(newBook)">
+    <form id="addBookForm" class="four columns" data-ng-submit="create(newBook)">
       <h3>Add New Book:</h3>
       <label for="newBookTitle">Title:</label>
       <input type="text" id="newBookTitle" required data-ng-model="newBook.title">

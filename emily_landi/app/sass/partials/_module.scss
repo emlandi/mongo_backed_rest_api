@@ -1,0 +1,32 @@
+input {
+  height: 38px;
+  padding: 6px 10px;
+  background-color: white;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+}
+label {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+button {
+  color: white;
+  background-color: lightblue;
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+}
+#bookList {
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 30px;
+  padding: 1%;
+}
+.book {
+  line-height: 2em;
+  margin: 8px;
+}

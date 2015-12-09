@@ -21,7 +21,7 @@ gulp.task('webpack:dev', function() {
 });
 
 gulp.task('sass:dev', function() {
-  gulp.src('./app/sass/**/*.scss')
+  gulp.src('./app/sass/styles.scss')
   .pipe(maps.init())
   .pipe(sass().on('error', sass.logError))
   .pipe(minifyCss())
@@ -46,6 +46,25 @@ gulp.task('webpack:test', function() {
     }
   }))
   .pipe(gulp.dest('test/client/'));
+});
+
+gulp.task('jshint', function() {
+  return gulp.src(appFiles)
+    .pipe(jshint({
+      node: true,
+      globals: {
+        describe: true,
+        it: true,
+        before: true,
+        after: true,
+      }
+    }))
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('mocha', function() {
+  return gulp.src(testFiles, {read: false})
+    .pipe(mocha({reporter: 'landing'}));
 });
 
 gulp.task('build:dev', ['webpack:dev', 'static:dev', 'sass:dev', 'img:dev']);
