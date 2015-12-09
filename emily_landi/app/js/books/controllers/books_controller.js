@@ -1,26 +1,24 @@
+var angular = window.angular;
 module.exports = function(app) {
-  app.controller('BooksController', ['$scope', '$http', function($scope, $http) {
+  app.controller('BooksController', ['$scope', '$http', 'cfResource', function($scope, $http, cfResource) {
     $scope.books = [];
-    var defaults = {rating: 'Excellent'};
-    $scope.newBook = Object.create(defaults);
+    $scope.defaults = {rating: 'Excellent'};
+    $scope.newBook = angular.copy($scope.defaults);
     $scope.orig = {};
+    var booksResource = cfResource('books');
 
     $scope.getAll = function() {
-      $http.get('/api/books')
-      .then(function(res) {
-        $scope.books = res.data;
-      }, function(err) {
-        console.log(err.data);
+      booksResource.getAll(function(err, data) {
+        if (err) return err;
+        $scope.books = data;
       });
     };
 
     $scope.create = function(book) {
-      $http.post('/api/books', book)
-      .then(function(res) {
-        $scope.books.push(res.data);
-        $scope.newBook = Object.create(defaults);
-      }, function(err) {
-        console.log(err.data);
+      booksResource.create(book, function(err, data) {
+        if (err) return err;
+        $scope.books.push(data);
+        $scope.newBook = angular.copy($scope.defaults);
       });
     };
 
@@ -53,7 +51,7 @@ module.exports = function(app) {
 
     $scope.delete = function(book) {
       $scope.books.splice($scope.books.indexOf(book), 1);
-      $http.delete('api/books/' + book._id)
+      $http.delete('/api/books/' + book._id)
         .then(function(res) {
           console.log('This book has been deleted.');
         }, function(res) {
@@ -61,6 +59,6 @@ module.exports = function(app) {
           $scope.getAll();
         });
     };
-
   }]);
 };
+
