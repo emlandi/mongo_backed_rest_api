@@ -15,7 +15,7 @@ button {
   background-color: lightblue;
   display: inline-block;
   height: 38px;
-  padding: 0 30px;
+  padding: 0 10px;
   text-align: center;
   text-transform: uppercase;
   border-radius: 4px;
@@ -25,6 +25,11 @@ button {
   background-color: rgba(255, 255, 255, .1);
   border-radius: 30px;
   padding: 1%;
+  @media (max-width: 800px) {
+    button {
+      display: block;
+    }
+  }
 }
 .book {
   line-height: 2em;
