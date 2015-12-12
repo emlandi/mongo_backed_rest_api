@@ -1,0 +1,21 @@
+<div>
+  <form name="{{formName}}" data-ng-submit="save({book: book})">
+    <h3>{{headingText}}</h3>
+
+    <label for="bookTitle">Title:</label>
+    <input type="text" id="bookTitle" required data-ng-model="book.title">
+
+    <label for="bookAuthor">Author: </label>
+    <input type="text" id="bookAuthor" data-ng-model="book.author">
+
+    <label for="bookPages">Pages:</label>
+    <input type="text" id="bookPages" data-ng-model="book.pages">
+
+    <label for="bookRating">Rating:</label>
+    <input type="text" id="bookRating" data-ng-model="book.rating" placeholder="Excellent">
+
+    <button type="submit">{{buttonText}}</button>
+  </form>
+  <ng-transclude></ng-transclude>
+</div>
+

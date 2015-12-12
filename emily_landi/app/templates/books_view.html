@@ -1,0 +1,31 @@
+<section class="container" data-ng-controller="BooksController" data-ng-init="getAll()">
+
+  <ul data-title="books" id="bookList" class="seven columns">
+    <h3 id="listHead">Book List</h3>
+    <li data-ng-repeat="book in books">
+      <div data-book-directive data-book="book"></div>
+
+      <div data-book-transclude-directive
+        data-ng-if="book.editing"
+        data-button-text="Submit Edit"
+        data-form-name="edit{{book._id}}"
+        data-book="book"
+        data-heading-text="Edit details for {{book.title}}"
+        data-save="update(book)">
+        <button data-ng-click="book.editing = false">Cancel Edit</button>
+      </div>
+
+      <button data-ng-if="!book.editing" data-ng-click="book.editing = true">Edit Book</button>
+      <button data-ng-if="!book.editing" data-ng-click="delete(book)">Delete Book</button>
+    </li>
+  </ul>
+
+  <form data-book-transclude-directive id="addBookForm" class="four columns"
+    data-button-text="Add New Book"
+    data-form-name="newBookForm"
+    data-heading-text="Add New Book"
+    data-book="newBook"
+    data-save="create(book)">
+  </form>
+
+</section>

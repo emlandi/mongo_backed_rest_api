@@ -24,6 +24,16 @@ module.exports = function(app) {
           .then(handleSuccess(callback), handleFail(callback));
       };
       return resource;
+
+      // resource.update = function(data, callback) {
+      //   $http.put('/api/' + resourceName + '/' + data._id, data)
+      //     .then(handleSuccess(callback), handleFail(callback));
+      // };
+
+      resource.delete = function(data, callback) {
+        $http.delete('/api/' + resourceName + '/' + data._id, data)
+          .then(handleSuccess(callback), handleFail(callback));
+      };
     };
   }]);
 };

@@ -26,27 +26,10 @@ module.exports = function(app) {
       book.editing = false;
       $http.put('/api/books/' + book._id, book)
         .then(function(res) {
-        }, function(res) {
+          console.log('Edit complete.');
+        }, function(err) {
           console.log(err.data);
         });
-    };
-
-    $scope.edit = function(book) {
-      $scope.orig.title = book.title;
-      $scope.orig.author = book.author;
-      $scope.orig.pages = book.pages;
-      $scope.orig.rating = book.rating;
-      book.editing = true;
-      console.log('Edit saved.');
-    };
-
-    $scope.cancelEdit = function(book) {
-      book.title = $scope.orig.title;
-      book.author = $scope.orig.author;
-      book.pages = $scope.orig.pages;
-      book.rating = $scope.orig.rating;
-      book.editing = false;
-      console.log('Edit cancelled.');
     };
 
     $scope.delete = function(book) {
@@ -59,6 +42,15 @@ module.exports = function(app) {
           $scope.getAll();
         });
     };
+
+    // $scope.delete = function(book) {
+    //   $scope.books.splice($scope.books.indexOf(book), 1);
+    //   booksResource.delete(book, function(err, data) {
+    //     if (err) return err;
+    //     $scope.getAll();
+    //   });
+    // };
+
   }]);
 };
 

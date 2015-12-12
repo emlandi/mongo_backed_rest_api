@@ -11,56 +11,7 @@
 
   <p>Slider bootstrap javascript page dom page speed jQuery. App dom SQL FTP Django sql javascript angular page html dom python TCP page speed bootstrap tablet markdown ember css puppet css jQuery javascript c# yaml. Slider FTP python page puppet TCP. Wireshark page speed javascript tablet yaml dom. Swift yaml sql dom hosting bootstrap page html markdown tablet FTP ember angular dom Django javascript python SQL puppet javascript jQuery TCP c#.</p>
 
-  <main class="container" data-ng-controller="BooksController" data-ng-init="getAll()">
-
-    <ul class="seven columns">
-      <h3 id="books">Book List:</h3>
-      <li data-ng-repeat="book in books">
-        <span data-ng-hide="book.editing">
-          {{book.title}}
-
-          <button data-ng-click="edit(book)">Edit Book</button>
-          <button data-ng-click="delete(book)">Delete Book</button>
-        </span>
-
-        <form data-ng-show="book.editing" name="{{'bookForm' + book._id}}" data-ng-submit="update(book)">
-          <h3>Edit Details for {{book.title}}</h3>
-          <label for="bookTitle{{book._id}}">Title:</label>
-          <input type="text" id="bookTitle{{book._id}}" required data-ng-model="book.title">
-
-          <label for="bookAuthor{{book._id}}">Author: </label>
-          <input type="text" id="bookAuthor{{book._id}}" data-ng-model="book.author">
-
-          <label for="bookPages{{book._id}}">Pages:</label>
-          <input type="text" id="bookPages{{book._id}}" data-ng-model="book.pages">
-
-          <label for="bookRating{{book._id}}">Rating:</label>
-          <input type="text" id="bookRating{{book._id}}" data-ng-model="book.rating" placeholder="Excellent">
-
-          <button type="submit">Submit Changes</button>
-        </form>
-
-        <button data-ng-show="book.editing" data-ng-click="cancelEdit(book)">Cancel Changes</button>
-      </li>
-    </ul>
-
-    <form class="five columns" id="newBooks" name="newBookForm" data-ng-submit="create(newBook)">
-      <h3>Add New Book:</h3>
-      <label for="newBookTitle">Title:</label>
-      <input type="text" id="newBookTitle" required data-ng-model="newBook.title">
-
-      <label for="newBookAuthor">Author:</label>
-      <input type="text" id="newBookAuthor" data-ng-model="newBook.author">
-
-      <label for="newBookPages">Pages:</label>
-      <input type="text" id="newBookPages" data-ng-model="newBook.pages">
-
-      <label for="newBookRating">Rating:</label>
-      <input type="text" id="newBookRating" data-ng-model="newBook.rating" placeholder="Excellent">
-
-      <button type="submit" data-ng-disabled="newBookForm.$invalid">Add New Book</button>
-    </form>
-  </main>
+  <main class="container" data-ng-view></main>
 
   <img src="book.png" alt="Book">
 
