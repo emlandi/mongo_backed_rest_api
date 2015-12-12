@@ -1,6 +1,6 @@
 <section class="container" data-ng-controller="BooksController" data-ng-init="getAll()">
 
-  <ul data-title="books" id="bookList" class="seven columns">
+  <ul id="bookList" class="seven columns">
     <h3 id="listHead">Book List</h3>
     <li data-ng-repeat="book in books">
       <div data-book-directive data-book="book"></div>
@@ -12,10 +12,10 @@
         data-book="book"
         data-heading-text="Edit details for {{book.title}}"
         data-save="update(book)">
-        <button data-ng-click="book.editing = false">Cancel Edit</button>
+        <button data-ng-click="book.editing = false; cancelEdit(book)">Cancel Edit</button>
       </div>
 
-      <button data-ng-if="!book.editing" data-ng-click="book.editing = true">Edit Book</button>
+      <button data-ng-if="!book.editing" data-ng-click="book.editing = true; edit(book)">Edit Book</button>
       <button data-ng-if="!book.editing" data-ng-click="delete(book)">Delete Book</button>
     </li>
   </ul>

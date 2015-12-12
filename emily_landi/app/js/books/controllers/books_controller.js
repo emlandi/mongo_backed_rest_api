@@ -26,10 +26,22 @@ module.exports = function(app) {
       book.editing = false;
       $http.put('/api/books/' + book._id, book)
         .then(function(res) {
-          console.log('Edit complete.');
+          console.log('Edit submitted.');
         }, function(err) {
           console.log(err.data);
         });
+    };
+
+    $scope.edit = function(book) {
+      $scope.orig = angular.copy(book);
+      book.editing = true;
+      console.log('Edit button clicked.');
+    };
+
+    $scope.cancelEdit = function(book) {
+      angular.copy($scope.orig, book);
+      book.editing = false;
+      console.log('Edit cancelled.');
     };
 
     $scope.delete = function(book) {
