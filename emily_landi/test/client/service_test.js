@@ -28,45 +28,38 @@ describe('cf_resource service', function() {
   });
 
   it('should make a post request(create new book)', function() {
-    $httpBackend.expectPOST('/api/books', {title: 'test title', rating: 'Excellent'}).respond(200, {title: 'newBook title'});
+    $httpBackend.expectPOST('/api/books').respond(200, [{_id: 1, title: 'test title'}]);
 
-    // expect($scope.books.length).toBe(0);
-    // expect($scope.newBook).toEqual($scope.defaults);
-
-    // $scope.newBook.title = 'test title';
-
-    booksResource.create($scope.newBook, function(err, data) {
+    var addBook = {title: 'test title'};
+    booksResource.create(addBook, function(err, data) {
       expect(err).toBe(null);
-      expect(data[0].title).toBe('newBook title');
-      // expect($scope.newBook).toEqual($scope.defaults);
+      expect(typeof data).toBe('object');
+      expect(data[0].title).toBe('test title');
+      expect(data[0]._id).toBe(1);
     });
   $httpBackend.flush();
   });
 
   it('should make a put request(edit book)', function() {
-    var data = [{title: 'edited title', rating: 'good', _id: 1}];
+    $httpBackend.expectPUT('/api/books/1').respond(200, [{_id: 1, title: 'test title'}]);
 
-    $httpBackend.expectPUT('/api/books/1', data[0]).respond(200);
-    booksResource.update(data[0], function(err, data) {
+    var editBook = {_id: 1, title: 'test title'};
+    booksResource.update(editBook, function(err, data) {
       expect(err).toBe(null);
-      expect(data[0].title).toBe('edited title');
-      expect(data[0]._id).toBe(1);r
-      expect(data[0].editing).toBe(false);
+      expect(typeof data).toBe('object');
+      expect(data[0].title).toBe('test title');
+      expect(data[0]._id).toBe(1);
     });
   $httpBackend.flush();
   });
 
   it('should make a delete request', function() {
-    var data = [{title: 'title1', author: 'author1', pages: '100', rating: 'good', _id: 1}, {title: 'title2', author: 'author2', pages: '200', rating: 'great', _id: 2}];
+    $httpBackend.expectDELETE('/api/books/1').respond(200, [{_id: 1, title: 'test title'}]);
 
-    $httpBackend.expectDELETE('/api/books/1').respond(200);
-    booksResource.delete(data[0], function(err, data) {
+    var deleteBook = {_id: 1, title: 'test title'};
+    booksResource.delete(deleteBook, function(err, data) {
       expect(err).toBe(null);
-      expect(data[0].title).toBe('title2');
-      expect(data[0].author).toBe('author2');
-      expect(data[0].pages).toBe('200');
-      expect(data[0].rating).toBe('great');
-      expect(data[0]._id).toBe(2);
+      expect(typeof data).toBe('object');
     });
   $httpBackend.flush();
   });
