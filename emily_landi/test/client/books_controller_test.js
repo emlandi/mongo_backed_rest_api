@@ -1,7 +1,7 @@
 require(__dirname + '/../../app/js/entry');
 require('angular-mocks');
 
-describe('books controller', function() {
+describe('books_controller', function() {
   var $httpBackend;
   var $ControllerConstructor;
   var $scope;

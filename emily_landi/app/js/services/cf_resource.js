@@ -23,17 +23,18 @@ module.exports = function(app) {
         $http.post('/api/' + resourceName, data)
           .then(handleSuccess(callback), handleFail(callback));
       };
-      return resource;
 
-      // resource.update = function(data, callback) {
-      //   $http.put('/api/' + resourceName + '/' + data._id, data)
-      //     .then(handleSuccess(callback), handleFail(callback));
-      // };
-
-      resource.delete = function(data, callback) {
-        $http.delete('/api/' + resourceName + '/' + data._id, data)
+      resource.update = function(data, callback) {
+        $http.put('/api/' + resourceName + '/' +  data._id, data)
           .then(handleSuccess(callback), handleFail(callback));
       };
+
+      resource.delete = function(data, callback) {
+        $http.delete('/api/' + resourceName + '/' + data._id , data)
+          .then(handleSuccess(callback), handleFail(callback));
+      };
+
+      return resource;
     };
   }]);
 };

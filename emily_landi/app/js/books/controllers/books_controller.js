@@ -23,13 +23,11 @@ module.exports = function(app) {
     };
 
     $scope.update = function(book) {
-      book.editing = false;
-      $http.put('/api/books/' + book._id, book)
-        .then(function(res) {
-          console.log('Edit submitted.');
-        }, function(err) {
-          console.log(err.data);
-        });
+      booksResource.update(book, function(err, data) {
+        book.editing = false;
+        if (err) return (err);
+        console.log('Edit submitted.');
+      });
     };
 
     $scope.edit = function(book) {
@@ -46,22 +44,13 @@ module.exports = function(app) {
 
     $scope.delete = function(book) {
       $scope.books.splice($scope.books.indexOf(book), 1);
-      $http.delete('/api/books/' + book._id)
-        .then(function(res) {
-          console.log('This book has been deleted.');
-        }, function(res) {
-          console.log(err.data);
+      booksResource.delete(book, function(err, data) {
+        if (err) {
           $scope.getAll();
-        });
+          return err;
+        }
+      });
     };
-
-    // $scope.delete = function(book) {
-    //   $scope.books.splice($scope.books.indexOf(book), 1);
-    //   booksResource.delete(book, function(err, data) {
-    //     if (err) return err;
-    //     $scope.getAll();
-    //   });
-    // };
 
   }]);
 };
